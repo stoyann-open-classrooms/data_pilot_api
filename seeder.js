@@ -9,10 +9,10 @@ dotenv.config({ path: './config/config.env' });
 // Load models
 
 
-const Table = require('./models/Table');
+const StaticTable = require('./models/StaticTable');
 const HorodatedTable = require('./models/HorodatedTable');
-const Colone = require('./models/Colone');
-const Line = require('./models/Line');
+const HorodatedLine = require('./models/HorodatedLine');
+const StaticLine = require('./models/StaticLine');
 
 
 
@@ -27,18 +27,18 @@ mongoose.connect(process.env.MONGO_URI, {
 // Read JSON files
 
 
-const tables = JSON.parse(
-    fs.readFileSync(`${__dirname}/_data/tables.json`, 'utf-8')
+const staticTables = JSON.parse(
+    fs.readFileSync(`${__dirname}/_data/static_tables.json`, 'utf-8')
   );
 const horodatedTables = JSON.parse(
-    fs.readFileSync(`${__dirname}/_data/horodated.json`, 'utf-8')
+    fs.readFileSync(`${__dirname}/_data/horodated_tables.json`, 'utf-8')
   );
 
-const colones = JSON.parse(
-    fs.readFileSync(`${__dirname}/_data/colones.json`, 'utf-8')
+const horodatedLines = JSON.parse(
+    fs.readFileSync(`${__dirname}/_data/horodated_lines.json`, 'utf-8')
   );
-const lines = JSON.parse(
-    fs.readFileSync(`${__dirname}/_data/lines.json`, 'utf-8')
+const staticLines = JSON.parse(
+    fs.readFileSync(`${__dirname}/_data/static_lines.json`, 'utf-8')
   );
 
 
@@ -50,10 +50,10 @@ const importData = async () => {
   try {
    
 
-    await Table.create(tables);
+    await StaticTable.create(staticTables);
    await HorodatedTable.create(horodatedTables)
-    await Colone.create(colones);
-    await Line.create(lines);
+    await HorodatedLine.create(horodatedLines);
+    await StaticLine.create(staticLines);
 
     console.log('Data Imported...'.green.inverse);
     process.exit();
@@ -66,10 +66,10 @@ const importData = async () => {
 const deleteData = async () => {
   try {
    
-    await Table.deleteMany();
+    await StaticTable.deleteMany();
    await HorodatedTable.deleteMany();
-    await Colone.deleteMany();
-    await Line.deleteMany();
+    await HorodatedLine.deleteMany();
+    await StaticLine.deleteMany();
 
     console.log('Data Destroyed...'.red.inverse);
     process.exit();

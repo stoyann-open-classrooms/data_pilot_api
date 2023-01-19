@@ -1,0 +1,19 @@
+[
+  {
+    "_id": "637a3694e5fc335f796a4140",
+    "title": "Objectifs",
+    "champs1": "ID agent",
+    "champs2": "objectif",
+    "champs3": "passage"
+  
+  },
+  {
+    "_id": "637a3694e5fc335f796a4141",
+    "title": "RH",
+    "champs1": "ID agent",
+    "champs2": "absent",
+    "champs3": "retard/minutes"
+  
+  }
+  
+]

@@ -13,10 +13,10 @@ dotenv.config({ path: "./config/config.env" });
 connectDB();
 // Route files
 
-const tables = require("./routes/tables");
-const Horodatedtables = require("./routes/horodatedTables");
-const colones = require("./routes/colones");
-const lines = require("./routes/lines");
+const staticTables = require("./routes/staticTables");
+const horodatedtables = require("./routes/horodatedTables");
+const horodatedLines = require("./routes/horodatedLines");
+const staticLines = require("./routes/staticLines");
 
 // initialize express  application
 const app = express();
@@ -32,10 +32,10 @@ if (process.env.NODE_ENV === "development") {
 
 
 // Mount routers
-app.use("/data-pilote/api/v1/tables", tables);
-app.use("/data-pilote/api/v1/horodated_tables", Horodatedtables);
-app.use("/data-pilote/api/v1/colones", colones);
-app.use("/data-pilote/api/v1/lines", lines);
+app.use("/data-pilote/api/v1/static_tables", staticTables);
+app.use("/data-pilote/api/v1/horodated_tables", horodatedtables);
+app.use("/data-pilote/api/v1/static_lines", staticLines);
+app.use("/data-pilote/api/v1/horodated_lines", horodatedLines);
 
 const PORT = process.env.PORT || 5550;
 
