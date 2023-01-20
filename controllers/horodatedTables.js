@@ -19,7 +19,7 @@ exports.getHorodatedTables = asyncHandler(async (req, res, next) => {
 //@ route:          GET /data-pilote/api/v1/horodated_tables/:id
 //@access:          Public
 exports.getHorodatedTable = asyncHandler(async (req, res, next) => {
-    const horodatedTable = await HorodatedTable.findById(req.params.id);
+    const horodatedTable = await HorodatedTable.findById(req.params.id).populate("horodatedLines");
     if (!horodatedTable) {
       return next(
         new ErrorResponse(`Aucune tableaux horodaté trouvée avec l'identifiant ${req.params.id}`, 404)

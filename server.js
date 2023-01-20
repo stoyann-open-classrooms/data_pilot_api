@@ -2,6 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const colors = require("colors");
+const cors = require("cors");
+const helmet = require("helmet");
 
 // load config DB
 const connectDB = require("./config/db");
@@ -29,6 +31,12 @@ app.use(express.json());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+// Enable CORS
+app.use(cors( {
+  origin:'*'
+}));
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 
 
 // Mount routers

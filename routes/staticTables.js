@@ -10,7 +10,7 @@ const advancedResults = require("../middlewares/advancedResults");
 router
   .route("/")
   .get(
-    advancedResults(StaticTable),
+    advancedResults(StaticTable, "staticLines"),
     getStaticTables
   )
   .post(createStaticTable);

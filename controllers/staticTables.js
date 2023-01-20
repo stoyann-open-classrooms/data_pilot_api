@@ -17,7 +17,7 @@ exports.getStaticTables = asyncHandler(async (req, res, next) => {
 //@ route:          GET /data-pilote/api/v1/static_tables/:id
 //@access:          Public
 exports.getStaticTable = asyncHandler(async (req, res, next) => {
-  const staticTable = await StaticTable.findById(req.params.id);
+  const staticTable = await StaticTable.findById(req.params.id).populate("staticLines");
   if (!staticTable) {
     return next(
       new ErrorResponse(`Aucune table trouvée avec l'identifiant ${req.params.id}`, 404)

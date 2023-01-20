@@ -10,6 +10,10 @@ const HorodatedTableSchema = new mongoose.Schema(
         "Le titre d'un Tableau ne peut pas exceder 25 characteres",
       ],
     },
+    tabletype: {
+      type: String,
+      default: "Horodatées"
+     },
     date: {
       type: String,
       default: "Date",
@@ -17,21 +21,27 @@ const HorodatedTableSchema = new mongoose.Schema(
     },
     champs1: {
       type: String,
+      default: null
     },
     champs2: {
       type: String,
+      default: null
     },
     champs3: {
       type: String,
+      default: null
     },
     champs4: {
       type: String,
+      default: null
     },
     champs5: {
       type: String,
+      default: null
     },
     champs6: {
       type: String,
+      default: null
     },
    
   },
