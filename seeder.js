@@ -13,6 +13,7 @@ const StaticTable = require('./models/StaticTable');
 const HorodatedTable = require('./models/HorodatedTable');
 const HorodatedLine = require('./models/HorodatedLine');
 const StaticLine = require('./models/StaticLine');
+const Weather = require('./models/WeatherShema');
 
 
 
@@ -40,6 +41,9 @@ const horodatedLines = JSON.parse(
 const staticLines = JSON.parse(
     fs.readFileSync(`${__dirname}/_data/static_lines.json`, 'utf-8')
   );
+const weathers = JSON.parse(
+    fs.readFileSync(`${__dirname}/_data/weather.json`, 'utf-8')
+  );
 
 
 
@@ -54,6 +58,7 @@ const importData = async () => {
    await HorodatedTable.create(horodatedTables)
     await HorodatedLine.create(horodatedLines);
     await StaticLine.create(staticLines);
+    await Weather.create(weathers);
 
     console.log('Data Imported...'.green.inverse);
     process.exit();
@@ -70,6 +75,7 @@ const deleteData = async () => {
    await HorodatedTable.deleteMany();
     await HorodatedLine.deleteMany();
     await StaticLine.deleteMany();
+    await Weather.deleteMany();
 
     console.log('Data Destroyed...'.red.inverse);
     process.exit();

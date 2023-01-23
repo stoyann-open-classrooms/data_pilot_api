@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const StaticLineSchema = new mongoose.Schema(
   {
     staticTable: {
-        type: mongoose.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: "StaticTable",
         required: true
       },
