@@ -58,7 +58,7 @@ const importData = async () => {
    await HorodatedTable.create(horodatedTables)
     await HorodatedLine.create(horodatedLines);
     await StaticLine.create(staticLines);
-    await Weather.create(weathers);
+  
 
     console.log('Data Imported...'.green.inverse);
     process.exit();
@@ -75,7 +75,7 @@ const deleteData = async () => {
    await HorodatedTable.deleteMany();
     await HorodatedLine.deleteMany();
     await StaticLine.deleteMany();
-    await Weather.deleteMany();
+ 
 
     console.log('Data Destroyed...'.red.inverse);
     process.exit();

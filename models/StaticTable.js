@@ -6,40 +6,28 @@ const StaticTableSchema = new mongoose.Schema(
       type: String,
       required: [true, "Merci d'ajouter un titre pour le tableau"],
       trim: true,
+      unique: true,
       maxlength: [
         25,
         "Le titre d'un tableau ne peut pas exceder 25 characteres",
       ],
     },
     tabletype: {
-     type: String,
-     default: "Satique"
-    },
-    champs1: {
       type: String,
-      default: null
+      default: "static-table",
     },
-    champs2: {
+
+      champ1: { type: String },
+      champ2: { type: String },
+      champ3: { type: String },
+      champ4: { type: String },
+      champ5: { type: String },
+      champ6: { type: String },
+    
+
+    link: {
       type: String,
-      default: null
     },
-    champs3: {
-      type: String,
-      default: null
-    },
-    champs4: {
-      type: String,
-      default: null
-    },
-    champs5: {
-      type: String,
-      default: null
-    },
-    champs6: {
-      type: String,
-      default: null
-    },
-   
   },
 
   {
@@ -50,14 +38,20 @@ const StaticTableSchema = new mongoose.Schema(
 );
 
 
-// reverse populate with virtuals 
+// reverse populate with virtuals
 
-StaticTableSchema.virtual('staticLines',  {
-  ref:'StaticLine',
-  localField: '_id',
-  foreignField: 'staticTable',
-  justOne: false
-})
+StaticTableSchema.virtual("staticLines", {
+  ref: "StaticLine",
+  localField: "_id",
+  foreignField: "staticTable",
+  justOne: false,
+});
+
+
+StaticTableSchema.pre('save', function(next) {
+  this.link = `http://localhost:3000/${this.tabletype}/${this._id}`
+  next()
+});
 
 
 module.exports = mongoose.model("StaticTable", StaticTableSchema);

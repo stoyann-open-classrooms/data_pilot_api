@@ -2,17 +2,25 @@
   {
     "_id": "637a3694e5fc335f796a4140",
     "title": "Objectifs",
-    "champs1": "ID agent",
-    "champs2": "objectif",
-    "champs3": "passage"
+
   
+
+     "champ1": "ID agent",
+     "champ2":"objectif",
+     "champ3": "passage"
+    
   },
   {
     "_id": "637a3694e5fc335f796a4141",
     "title": "RH",
-    "champs1": "ID agent",
-    "champs2": "absent",
-    "champs3": "retard/minutes"
+    
+
+       "champ1": "ID agent",
+       "champ2":"absent",
+       "champ3": "retard/minutes"
+      
+     
+  
   
   }
   

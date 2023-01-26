@@ -9,41 +9,29 @@ const HorodatedTableSchema = new mongoose.Schema(
         25,
         "Le titre d'un Tableau ne peut pas exceder 25 characteres",
       ],
+      unique:true,
     },
     tabletype: {
       type: String,
-      default: "Horodatées"
+      default: "horodated-table"
      },
     date: {
       type: String,
       default: "Date",
       unique: false
     },
-    champs1: {
-      type: String,
-      default: null
-    },
-    champs2: {
-      type: String,
-      default: null
-    },
-    champs3: {
-      type: String,
-      default: null
-    },
-    champs4: {
-      type: String,
-      default: null
-    },
-    champs5: {
-      type: String,
-      default: null
-    },
-    champs6: {
-      type: String,
-      default: null
-    },
    
+      champ1: { type: String },
+      champ2: { type: String },
+      champ3: { type: String },
+      champ4: { type: String },
+      champ5: { type: String },
+      champ6: { type: String },
+   
+    link: {
+      type: String,
+      default: null
+     },
   },
 
   {
@@ -53,6 +41,9 @@ const HorodatedTableSchema = new mongoose.Schema(
   }
 );
 
+function arrayLimit(val) {
+  return val.length <= 6;
+}
 
 // reverse populate with virtuals 
 
@@ -63,6 +54,11 @@ HorodatedTableSchema.virtual('horodatedLines',  {
   justOne: false
 })
 
+
+HorodatedTableSchema.pre('save', function(next) {
+  this.link = `http://localhost:3000/${this.tabletype}/${this._id}`
+  next()
+});
 
 
 
