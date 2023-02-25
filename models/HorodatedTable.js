@@ -11,9 +11,17 @@ const HorodatedTableSchema = new mongoose.Schema(
       ],
       unique:true,
     },
-    tabletype: {
+    description: {
       type: String,
-      default: "horodated-table"
+      maxlength: [
+        300,
+        "Le titre d'un Tableau ne peut pas exceder 300 characteres",
+      ],
+    
+    },
+    tableType: {
+      type: String,
+      default: "Horodaté"
      },
     date: {
       type: String,
@@ -56,7 +64,7 @@ HorodatedTableSchema.virtual('horodatedLines',  {
 
 
 HorodatedTableSchema.pre('save', function(next) {
-  this.link = `http://localhost:3000/${this.tabletype}/${this._id}`
+  this.link = `${this.tableType}/${this._id}`
   next()
 });
 

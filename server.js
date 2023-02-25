@@ -5,9 +5,6 @@ const colors = require("colors");
 const cors = require("cors");
 const helmet = require("helmet");
 
-
-
-
 // load config DB
 const connectDB = require("./config/db");
 
@@ -26,8 +23,6 @@ const weathers = require("./routes/weather");
 
 // initialize express  application
 const app = express();
-
-
 
 // Body parser
 app.use(express.json());
@@ -50,7 +45,7 @@ app.use("/data-pilote/api/v1/static_tables", staticTables);
 app.use("/data-pilote/api/v1/horodated_tables", horodatedtables);
 app.use("/data-pilote/api/v1/static_lines", staticLines);
 app.use("/data-pilote/api/v1/horodated_lines", horodatedLines);
-app.use("/data-pilote/api/v1/weathers",weathers);
+app.use("/data-pilote/api/v1/weathers", weathers);
 
 const PORT = process.env.PORT || 5550;
 

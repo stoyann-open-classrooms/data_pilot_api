@@ -8,6 +8,13 @@ const WeatherSchema = new Schema(
       type: Number,
       
     },
+    heure: {
+      type: String,
+    },
+    identity: {
+      
+      type: String,
+    },
     date: {
       type: String,
       

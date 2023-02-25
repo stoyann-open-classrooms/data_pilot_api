@@ -12,9 +12,17 @@ const StaticTableSchema = new mongoose.Schema(
         "Le titre d'un tableau ne peut pas exceder 25 characteres",
       ],
     },
-    tabletype: {
+    description: {
       type: String,
-      default: "static-table",
+      maxlength: [
+        300,
+        "Le titre d'un Tableau ne peut pas exceder 300 characteres",
+      ],
+    
+    },
+    tableType: {
+      type: String,
+      default: "Statique",
     },
 
       champ1: { type: String },
@@ -49,7 +57,7 @@ StaticTableSchema.virtual("staticLines", {
 
 
 StaticTableSchema.pre('save', function(next) {
-  this.link = `http://localhost:3000/${this.tabletype}/${this._id}`
+  this.link = `${this.tableType}/${this._id}`
   next()
 });
 

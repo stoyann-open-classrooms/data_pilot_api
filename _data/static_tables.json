@@ -2,7 +2,8 @@
     {
       "_id": "637a3694e5fc335f796a4860",
       "title": "Budget heures CHS",
-      
+      "description": "indiquer dans ce tableau les données relatives au budget heures du client CHS",
+      "tableType": "Statique",
         "champ1":"ID client",
         "champ2": "heures",
         "champ3":"date_achat"

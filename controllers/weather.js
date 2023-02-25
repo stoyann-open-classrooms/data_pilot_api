@@ -41,21 +41,27 @@ exports.createWeather = asyncHandler(async (req, res, next) => {
       let rowData = {};
       rowData.month = new Date().getMonth() + 1;
       // Récupérer le premier td
-      rowData.date = $(tr).find(".full").first().text() + " - " + new Date().getMonth()+1 + "/" + new Date().getFullYear();
-      // Récupérer le dernier tdh
+      formatHeure = $(tr).find(".full").first().text().split('-') ;
+      formatDate = new Date().getDate() + "/"  + new Date().getMonth()+1  +  "/" +  new Date().getFullYear();
+      rowData.heure = formatHeure[1] 
+      rowData.date = formatDate
+      rowData.identity = formatHeure[1] + formatDate
+      // Récupérer le dernier td
       rowData.pluviometrie = $(tr).find("td").last().text();
       data.push(rowData);
     });
   
-    // Planifie une tâche à exécuter tous les jours à 23h45
-    cron.schedule("10  17 * * *", async function () {
+    // Planifie une tâche à exécuter tous les jours à 23h35
+    cron.schedule("10  06 * * *", async function () {
       console.log("running a task every day at 23:45 am");
       data.forEach(async (item) => {
-        const existingData = await Weather.findOne({ date: item.date });
+        const existingData = await Weather.find({ identity: item.identity });
+        console.log(existingData);
         if (!existingData) {
+          await Weather.updateOne(item);
+        } 
+        else {
           await Weather.create(item);
-        } else {
-          await Weather.updateOne({ date: item.date }, item);
         }
       });
     });

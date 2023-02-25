@@ -16,24 +16,30 @@ const HorodatedLineSchema = new mongoose.Schema(
 
     champs1: {
       type: String,
+ 
     },
 
     champs2: {
       type: String,
+     
     },
 
     champs3: {
       type: String,
+   
     },
     
     champs4: {
       type: String,
+     
     },
     champs5: {
       type: String,
+      
     },
     champs6: {
       type: String,
+     
     },
   },
 

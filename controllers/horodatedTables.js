@@ -43,21 +43,48 @@ exports.createHorodatedTable = asyncHandler(async (req, res, next) => {
   });
 
 
-  //@description:     Update a horodated table
-//@ route:          PUT /krysto/api/v1/horodated_tables/:id
+//   //@description:     Update a horodated table
+// //@ route:          PUT /krysto/api/v1/horodated_tables/:id
+// //@access:          Public
+// exports.updateHorodatedTable = asyncHandler(async (req, res, next) => {
+//     const horodatedTable = await HorodatedTable.findByIdAndUpdate(req.params.id, req.body, {
+//       new: true,
+//       runValidators: true,
+//     });
+//     if (!horodatedTable) {
+//       return next(
+//         new ErrorResponse(`Aucune table horodaté trouvée avec l'identifiant ${req.params.id}`, 404)
+//       );
+//     }
+//     res.status(200).json({ success: true, data: horodatedTable });
+//   });
+
+
+
+//@description:     Update static table
+//@ route:          PUT /data-pilote/api/v1//horodated_tables//:id
 //@access:          Public
 exports.updateHorodatedTable = asyncHandler(async (req, res, next) => {
-    const horodatedTable = await HorodatedTable.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    });
-    if (!horodatedTable) {
-      return next(
-        new ErrorResponse(`Aucune table horodaté trouvée avec l'identifiant ${req.params.id}`, 404)
-      );
-    }
-    res.status(200).json({ success: true, data: horodatedTable });
+  const horodatedTable = await HorodatedTable.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
   });
+  if (!horodatedTable) {
+    return next(
+      new ErrorResponse(`Aucune table trouvée avec l'identifiant ${req.params.id}`, 404)
+    );
+  }
+  res.status(200).json({ success: true, data: horodatedTable });
+});
+
+
+
+
+
+
+
+
+
 
 
 
